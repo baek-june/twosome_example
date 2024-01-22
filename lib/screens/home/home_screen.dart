@@ -1,5 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:twosome_example/widgets/banner_widget.dart';
+import 'package:twosome_example/widgets/today_menu_widget.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -55,39 +56,10 @@ class MyHomePage extends StatelessWidget {
           children: [
             // 'New' 탭 선택 시 보여지는 위젯입니다.
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CarouselSlider.builder(
-                  itemCount: bannerItemImgUrl.length, // bannerItemImgUrl의 길이만큼 생성합니다.
-                  itemBuilder: (context, itemIndex, realIndex) {
-                    return Stack(
-                      children: [
-                        Image.asset(
-                          "${bannerItemImgUrl[itemIndex]}",
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: Container(
-                            color: Colors.black38,
-                            padding: const EdgeInsets.all(4.0),
-                            margin: EdgeInsets.all(16.0),
-                            child: Text(
-                              // 현재 (이미지 인덱스 + 1 / 배너 아이템 이미지 길이) 를 작성합니다.
-                              (itemIndex + 1).toString() + " / " + bannerItemImgUrl.length.toString(),
-                              style: const TextStyle(color: Colors.white,),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                  options: CarouselOptions(
-                    viewportFraction: 1.0,
-                    autoPlay: true,
-                  ),
-                ),
+                BannerWidget(bannerItemImgUrl: bannerItemImgUrl),
+                TodayMenuWidget(),
               ],
             ),
             // '커피&음료' 탭 선택 시 보여지는 위젯입니다.
